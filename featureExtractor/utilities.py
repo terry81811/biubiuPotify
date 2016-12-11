@@ -10,6 +10,7 @@ import scipy.sparse as sp
 import numpy as np
 import math
 
+import io
 
 # helper function
 def isAllUpper(text):
@@ -130,8 +131,7 @@ def cosine_similarity(X):
 	K = X.get_shape()[0]
 
 	# resArr = [[None for x in range(K)] for y in range(K)]
-
-	resArr = np.zeros((K, K))
+	# resArr = np.zeros((K, K))
 
 	print ">>> in cosine_similarity"
 
@@ -144,20 +144,40 @@ def cosine_similarity(X):
 		leng = row.dot(row.transpose()).toarray().tolist()[0][0]
 		lengths.append(math.sqrt(leng))
 
+	lengths = np.array(lengths)[:,None].transpose()
 	# print np.array(lengths)
-
-	lengths = np.array(lengths)[:,None]
 	print lengths.shape
 
-	resArr = np.zeros((K, K))
-	resArr = X.dot(X.transpose()).todense()
+	# resArr = np.zeros((K, K), dtype=np.int64)
+	# resArr = X.dot(X.transpose()).todense()
+	resArr = X.dot(X.transpose()).astype(np.float64)
 	print resArr.shape
 	
-	resArr = resArr / lengths
-	resArr = resArr / lengths.T
+	# resArr = resArr / lengths
+	# resArr = resArr / lengths.T
+	# print resArr.shape
+	# print resArr.shape
 
-	return resArr
+	# f_out = io.open('output/review_cos_sim_test.tsv', 'wb', encoding='utf8')
+	f_out = open('output/review_cos_sim_test.tsv', 'w')
 
+	XT = X.transpose()
+	for j in range(K):
+		print ">>> calculating cos_similarity for doc: " + str(j)
+		row = X.getrow(j)
+		sim = row.dot(XT)
+		# print sim
+		# print sim.shape
+		sim = sim / lengths
+		# print sim
+		# print sim.shape
+		sim = sim / lengths[0,j]
+		# print sim
+		# print sim.shape
+		# print sim.todense()[0].tolist()
+		f_out.write("\t".join(format(x, "10.4f") for x in sim[0].tolist()[0]) + "\n")
+
+	# return resArr
 
 
 def tfidf(docs):

@@ -70,13 +70,26 @@ print len(all_words)
 print tfidf.shape
 
 print ">>> computing pairwise cos-simiarity using tfidf features"
-M = cosine_similarity(tfidf)
+cosine_similarity(tfidf[0:10,])
 
-print M.shape
+# print M.shape
+# print M
+
 
 f_out = io.open('output/review_cos_sim_key.tsv', 'w', encoding='utf8')
 f_out.write("\n".join(ks) + "\n")
 
-np.savetxt("output/review_cos_sim.tsv", M, delimiter="\t", fmt='%1.4f')
+
+# f_out = open('output/review_cos_sim.tsv', 'w')
+
+# for i in range(M.shape[0]):
+#     # print M[i]
+#     # print M[i].shape
+#     # print M[i].tolist()[0]
+
+#     f_out.write("\t".join(map(str,M[i].tolist()[0])) + "\n")
+
+
+# np.savetxt("output/review_cos_sim.tsv", M, delimiter="\t", fmt='%1.4f')
 
 
