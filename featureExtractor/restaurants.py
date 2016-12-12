@@ -63,17 +63,6 @@ for k, v in restaurants.iteritems():
 	most_common, num_most_common = Counter(dateString).most_common(1)[0]
 	restaurants[k]['maxRDay'] = num_most_common
 
-	# restaurants[k]['EN'] = 
-
-
-	# ranks
-	# restaurants[k]['avgRanks'] = float(sum(ranks)) / len(ranks)
-	# restaurants[k]['minRanks'] = min(ranks)
-	# restaurants[k]['avgRankRatio'] = float(sum(rank_ratio)) / len(rank_ratio)
-	# restaurants[k]['minRankRatio'] = min(rank_ratio)
-	# restaurants[k]['avgRankTimeFrame'] = float(sum(rank_time_frame)) / len(rank_time_frame)
-	# restaurants[k]['minRankTimeFrame'] = min(rank_time_frame)
-
 	restaurants[k]['avgRD'] = float(sum(rating_deviation)) / len(rating_deviation)
 	restaurants[k]['maxRD'] = max(rating_deviation)
 
@@ -111,13 +100,6 @@ for k, v in restaurants.iteritems():
 	out.append(str(v['posRatingRatio']))
 	out.append(str(v['negRatingRatio']))
 	out.append(str(v['maxRDay']))
-
-	# out.append(str(v['avgRanks']))
-	# out.append(str(v['minRanks']))
-	# out.append(str(v['avgRankRatio']))
-	# out.append(str(v['minRankRatio']))
-	# out.append(str(v['avgRankTimeFrame']))
-	# out.append(str(v['minRankTimeFrame']))
 
 	out.append(str(v['avgRD']))
 	out.append(str(v['maxRD']))

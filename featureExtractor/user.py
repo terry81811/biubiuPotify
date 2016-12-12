@@ -46,13 +46,6 @@ for review in reviews:
 	users[review[2]]['reviews'].append(review)
 
 
-# cnt = 0
-# for k, v in users.iteritems():
-# 	cnt += len(v['reviews'])
-
-# print cnt
-
-
 ####################
 # getting labels
 ####################
@@ -69,10 +62,7 @@ print users['We1kda5rqra8ClvV34Od4A']
 # getting features
 ####################
 
-# avgRating	posRatingRatio	negRatingRatio	maxRDay	avgRD	maxRD	extRatingRatio	avgL	stdL	avgPCW	maxPCW	avgPC	avgPC	avgOnePP	maxOnePP	avgRES	maxRES	avgPosScore	maxPosScore	avgNegScore	maxNegScore	avgSW	maxSW	avgOW	maxOW	fraction
-
-
-# f_out = io.open('output/user_features.tsv', 'w', encoding='utf8')
+f_out = io.open('output/user_features.tsv', 'w', encoding='utf8')
 
 cnt = 0
 

@@ -64,10 +64,6 @@ for k, v in reviews.iteritems():
 		'date': v['date'],
 	}
 
-# print len(reviewsIdMap)
-# print reviewsIdMap['aVT6N0mvnM5vmr2_igf1QQ']
-
-
 ####################
 # group by restaurants
 ####################
@@ -78,17 +74,9 @@ for biz in set(bizs):
 	restaurants[biz] = {
 		'reviews': [],
 	}
-
-
+	
 for k, review in reviewsIdMap.iteritems():
 	restaurants[review['biz']]['reviews'].append(review)
-
-cnt = 0
-
-for k, v in restaurants.iteritems():
- 	cnt += len(v['reviews'])
-
-
 
 
 ####################
