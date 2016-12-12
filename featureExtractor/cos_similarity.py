@@ -5,10 +5,6 @@ import math
 from utilities import *
 import numpy as np
 
-
-
-
-
 #####################
 # main
 #####################
@@ -54,7 +50,6 @@ for k, v in reviews.iteritems():
     }
 
 print len(reviewsIdMap)
-# print reviewsIdMap['aVT6N0mvnM5vmr2_igf1QQ']
 
 text = reviewsIdMap['aVT6N0mvnM5vmr2_igf1QQ']['text']
 
@@ -62,34 +57,16 @@ docs_text = [" ".join(tokenize(v['text'])) for k, v in reviewsIdMap.iteritems()]
 
 ks = [k for k, v in reviewsIdMap.iteritems()]
 
-print len(docs_text)
-
 print ">>> building tfidf features for docs"
 (tfidf, all_words) = tfidf(docs_text)
-print len(all_words)
-print tfidf.shape
 
 print ">>> computing pairwise cos-simiarity using tfidf features"
 cosine_similarity(tfidf[0:10,])
-
-# print M.shape
-# print M
 
 
 f_out = io.open('output/review_cos_sim_key.tsv', 'w', encoding='utf8')
 f_out.write("\n".join(ks) + "\n")
 
 
-# f_out = open('output/review_cos_sim.tsv', 'w')
-
-# for i in range(M.shape[0]):
-#     # print M[i]
-#     # print M[i].shape
-#     # print M[i].tolist()[0]
-
-#     f_out.write("\t".join(map(str,M[i].tolist()[0])) + "\n")
-
-
-# np.savetxt("output/review_cos_sim.tsv", M, delimiter="\t", fmt='%1.4f')
 
 
